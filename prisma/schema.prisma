@@ -1,0 +1,37 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+//slug is= learn React = learn-React
+model Todo{
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  body     String?
+  completed Boolean @default(false)
+  user_id String
+  createdAt DateTime @default(now())
+   imageUrl  String? 
+}
+
+//references معناها اني عاوز اعمل علاقه بين الاتنين موديل باستخدام ال id 
+
+
+
+// model Comment {
+//   id      String @id @default(auto()) @map("_id") @db.ObjectId
+//   comment String
+//   post    Post   @relation(fields: [postId], references: [id])
+//   postId  String @db.ObjectId
+// }
+
+// Address is an embedded document
+type Address {
+  street String
+  city   String
+  state  String
+  zip    String
+}
